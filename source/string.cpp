@@ -148,7 +148,7 @@ String& String::operator*=(unsigned int m) {
   delete[] Data;
   size = size * m;
   Data = new char[size];
-  for (size_t i = 0; i < size + 1; i++) {
+  for (size_t i = 0; i < size; i++) {
     Data[i] = str[i % len];
   }
   delete[] str;
