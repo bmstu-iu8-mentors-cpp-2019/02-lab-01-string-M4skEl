@@ -47,7 +47,6 @@ bool String::Empty() const {
 void String::RTrim(char symbol) {
   char* newData = new char[size];
   for (size_t i = 0; i < size; i++) newData[i] = Data[i];
-  // std::copy(Data, &Data[size - 1], &newData[0]);
   size_t i = size - 1;
   int count = 0;
   while (newData[i] == symbol) {
@@ -60,11 +59,11 @@ void String::RTrim(char symbol) {
   for (size_t j = 0; j < size; j++) {
     Data[j] = newData[j];
   }
+  delete [] newData;
 }
 void String::LTrim(char symbol) {
   char* newData = new char[size];
   for (size_t i = 0; i < size; i++) newData[i] = Data[i];
-  // std::copy(Data, &Data[size - 1], &newData[0]);
   size_t i = 0, count = 0;
   while (newData[i] == symbol) {
     i++;
@@ -76,6 +75,7 @@ void String::LTrim(char symbol) {
   for (size_t j = 0; j < size; j++) {
     Data[j] = newData[j + count];
   }
+  delete [] newData;
 }
 void String::swap(String& oth) {
   char* buf = new char[size];
@@ -89,6 +89,7 @@ void String::swap(String& oth) {
   oth.size = len;
   oth.Data = new char[oth.size];
   for (size_t i = 0; i < oth.size; i++) oth.Data[i] = buf[i];
+  delete [] buf;
 }
 String& String::operator=(const String& rhs) {
   delete[] Data;
@@ -122,6 +123,7 @@ String& String::operator+=(const String& rhs) {
   }
   delete[] Data;
   Data = buf;
+  delete [] buf;
   return *this;
 }
 bool String::operator<(const String& rhs) const {
@@ -136,7 +138,6 @@ bool String::operator<(const String& rhs) const {
   return false;
 }
 String& String::operator*=(unsigned int m) {
-  // String str = String(Data);
   size_t len = size;
   char* str = new char[size];
   for (size_t i = 0; i < size; i++) str[i] = Data[i];
