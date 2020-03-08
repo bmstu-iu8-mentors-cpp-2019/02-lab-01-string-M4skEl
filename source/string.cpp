@@ -47,6 +47,7 @@ bool String::Empty() const {
 void String::RTrim(char symbol) {
   char* newData = new char[size];
   for (size_t i = 0; i < size; i++) newData[i] = Data[i];
+  // std::copy(Data, &Data[size - 1], &newData[0]);
   size_t i = size - 1;
   int count = 0;
   while (newData[i] == symbol) {
@@ -64,6 +65,7 @@ void String::RTrim(char symbol) {
 void String::LTrim(char symbol) {
   char* newData = new char[size];
   for (size_t i = 0; i < size; i++) newData[i] = Data[i];
+  // std::copy(Data, &Data[size - 1], &newData[0]);
   size_t i = 0, count = 0;
   while (newData[i] == symbol) {
     i++;
@@ -123,7 +125,7 @@ String& String::operator+=(const String& rhs) {
   }
   delete[] Data;
   Data = buf;
-  delete [] buf;
+  //delete [] buf;
   return *this;
 }
 bool String::operator<(const String& rhs) const {
@@ -138,6 +140,7 @@ bool String::operator<(const String& rhs) const {
   return false;
 }
 String& String::operator*=(unsigned int m) {
+  // String str = String(Data);
   size_t len = size;
   char* str = new char[size];
   for (size_t i = 0; i < size; i++) str[i] = Data[i];
