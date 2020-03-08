@@ -17,7 +17,7 @@ String::String(const String& rhs) {
 }
 
 String::String(const char* data) {
-  size = strlen(data) - 1;
+  size = strlen(data);
   Data = new char[size];
   for (size_t i = 0; i < size; i++) Data[i] = data[i];
 }
@@ -37,7 +37,7 @@ void String::Replace(char oldSymbol, char newSymbol) {
     if (Data[i] == oldSymbol) Data[i] = newSymbol;
   }
 }
-size_t String::Size() const { return strlen(Data)-1; }
+size_t String::Size() const { return size; }
 bool String::Empty() const {
   if (size == 0)
     return true;
@@ -118,11 +118,10 @@ String& String::operator+=(const String& rhs) {
     buf[i] = Data[i];
   }
   for (size_t j = lenght; j < size; j++) {
-    buf[j] = rhs.Data[j];
+    buf[j] = rhs.Data[j - lenght];
   }
   delete[] Data;
-  Data = new char[size];
-  for (size_t i = 0; i < size; i++) Data[i] = buf[i];
+  Data = buf;
   return *this;
 }
 bool String::operator<(const String& rhs) const {
