@@ -1,13 +1,18 @@
-// Copyright 2018 Your Name <your_email>
+// Copyright 2020 ELisey Siver <sivereliseu7@gmail.com>
 
 #ifndef INCLUDE_STRING_HPP_
 #define INCLUDE_STRING_HPP_
 
 #include <cstddef>
 #include <iostream>
+#include <utility>
+#include <algorithm>
+#include <cstring>
 
 class String {
  public:
+  // Размер строки
+  size_t size;
   /// Деструктор
   ~String();
 
