@@ -1,5 +1,6 @@
 // Copyright 2020 ELisey Siver <sivereliseu7@gmail.com>
 #include "string.hpp"
+#include <cstring>
 
 String::String() {
   Data = new char[0];
@@ -25,7 +26,7 @@ size_t String::Find(const String& substr) const {
     if (Data[i] == substr.Data[0]) {
       for (size_t j = 0; j < substr.size; j++) {
         if (Data[i + j] != substr[j]) break;
-        if (j == substr.size-1) return i;
+        if (j == substr.size - 1) return i;
       }
     }
   }
@@ -36,7 +37,7 @@ void String::Replace(char oldSymbol, char newSymbol) {
     if (Data[i] == oldSymbol) Data[i] = newSymbol;
   }
 }
-size_t String::Size() const { return size + 1; }
+size_t String::Size() const { return strlen(Data)-1; }
 bool String::Empty() const {
   if (size == 0)
     return true;
@@ -47,7 +48,7 @@ void String::RTrim(char symbol) {
   char* newData = new char[size];
   for (size_t i = 0; i < size; i++) newData[i] = Data[i];
   // std::copy(Data, &Data[size - 1], &newData[0]);
-  size_t i = size-1;
+  size_t i = size - 1;
   int count = 0;
   while (newData[i] == symbol) {
     ++count;
@@ -136,14 +137,14 @@ bool String::operator<(const String& rhs) const {
   return false;
 }
 String& String::operator*=(unsigned int m) {
-  //String str = String(Data);
+  // String str = String(Data);
   size_t len = size;
-  char * str = new char[size];
+  char* str = new char[size];
   for (size_t i = 0; i < size; i++) str[i] = Data[i];
   delete[] Data;
   size = size * m;
   Data = new char[size];
-  for (size_t i = 0; i < size+1; i++) {
+  for (size_t i = 0; i < size + 1; i++) {
     Data[i] = str[i % len];
   }
   return *this;

@@ -28,12 +28,10 @@ hunter_add_package(GTest)
 find_package(GTest CONFIG REQUIRED)
 
 add_library(02-lab-01-string-M4skEl STATIC
-  # enum your files and delete this comment
-  # ${CMAKE_CURRENT_SOURCE_DIR}/sources/source.cpp
-        source/string.cpp main.cpp)
+        ${CMAKE_CURRENT_SOURCE_DIR}/source/string.cpp
+        )
 add_executable(tests
   ${CMAKE_CURRENT_SOURCE_DIR}/tests/string_unittest.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/source/string.cpp
 )
 
 target_include_directories(02-lab-01-string-M4skEl

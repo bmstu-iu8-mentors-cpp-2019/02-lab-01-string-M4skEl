@@ -3,11 +3,11 @@
 #ifndef INCLUDE_STRING_HPP_
 #define INCLUDE_STRING_HPP_
 
+#include <algorithm>
 #include <cstddef>
+#include <cstring>
 #include <iostream>
 #include <utility>
-#include <algorithm>
-#include <cstring>
 
 class String {
  public:
@@ -26,7 +26,7 @@ class String {
   /// Пользовательский конструктор
   /// <param name="data">Данные, которые требуется поместить в создаваемый
   /// объект </param>
-  String(const char* data);
+  explicit String(const char* data);
 
   /// Оператор присваивания
   /// <param name="data">Объект, который копируем </param>
