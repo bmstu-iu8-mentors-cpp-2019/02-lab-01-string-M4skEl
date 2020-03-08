@@ -60,7 +60,7 @@ void String::RTrim(char symbol) {
   for (size_t j = 0; j < size; j++) {
     Data[j] = newData[j];
   }
-  delete [] newData;
+  delete[] newData;
 }
 void String::LTrim(char symbol) {
   char* newData = new char[size];
@@ -77,7 +77,7 @@ void String::LTrim(char symbol) {
   for (size_t j = 0; j < size; j++) {
     Data[j] = newData[j + count];
   }
-  delete [] newData;
+  delete[] newData;
 }
 void String::swap(String& oth) {
   char* buf = new char[size];
@@ -91,7 +91,7 @@ void String::swap(String& oth) {
   oth.size = len;
   oth.Data = new char[oth.size];
   for (size_t i = 0; i < oth.size; i++) oth.Data[i] = buf[i];
-  delete [] buf;
+  delete[] buf;
 }
 String& String::operator=(const String& rhs) {
   delete[] Data;
@@ -124,8 +124,9 @@ String& String::operator+=(const String& rhs) {
     buf[j] = rhs.Data[j - lenght];
   }
   delete[] Data;
-  Data = buf;
-  //delete [] buf;
+  Data = new char[size];
+  for (size_t i = 0; i < size; i++) Data[i] = buf[i];
+  delete[] buf;
   return *this;
 }
 bool String::operator<(const String& rhs) const {
@@ -150,7 +151,7 @@ String& String::operator*=(unsigned int m) {
   for (size_t i = 0; i < size + 1; i++) {
     Data[i] = str[i % len];
   }
-  delete [] str;
+  delete[] str;
   return *this;
 }
 String operator+(const String& a, const String& b) {
