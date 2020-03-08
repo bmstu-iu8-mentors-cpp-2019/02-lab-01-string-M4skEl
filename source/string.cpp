@@ -146,6 +146,7 @@ String& String::operator*=(unsigned int m) {
   for (size_t i = 0; i < size + 1; i++) {
     Data[i] = str[i % len];
   }
+  delete [] str;
   return *this;
 }
 String operator+(const String& a, const String& b) {
