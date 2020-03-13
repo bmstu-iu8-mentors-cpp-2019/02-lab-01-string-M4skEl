@@ -1,13 +1,18 @@
-// Copyright 2018 Your Name <your_email>
+// Copyright 2020 ELisey Siver <sivereliseu7@gmail.com>
 
 #ifndef INCLUDE_STRING_HPP_
 #define INCLUDE_STRING_HPP_
 
+#include <algorithm>
 #include <cstddef>
+#include <cstring>
 #include <iostream>
+#include <utility>
 
 class String {
  public:
+  // Размер строки
+  size_t size;
   /// Деструктор
   ~String();
 
@@ -21,7 +26,7 @@ class String {
   /// Пользовательский конструктор
   /// <param name="data">Данные, которые требуется поместить в создаваемый
   /// объект </param>
-  String(const char* data);
+  explicit String(const char* data);
 
   /// Оператор присваивания
   /// <param name="data">Объект, который копируем </param>
@@ -110,6 +115,11 @@ class String {
   void swap(String& oth);
 
   friend std::ostream& operator<<(std::ostream&, const String&);
+
+  friend String operator+(const String& a, const String& b);
+
+  friend String operator*(const String& a, unsigned int b);
+
 
  private:
   char* Data;
